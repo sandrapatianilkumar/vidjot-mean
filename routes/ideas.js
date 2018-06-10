@@ -67,7 +67,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
 //idea index page
 router.get('/', ensureAuthenticated, (req, res) => {
-    Idea.find() //{ user: res.user.id }
+    Idea.find({ user: req.user.id })
         .sort({ date: 'desc' })
         .then(ideas => {
             res.render('ideas/index', {
